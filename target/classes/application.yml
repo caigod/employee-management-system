@@ -11,3 +11,4 @@ mybatis:
   mapper-locations: classpath:/mapper/*.xml
   #定义包别名，使用 pojo 时可以直接使用 pojo 的类型名称不用加包名
   type-aliases-package: com.bjsxt.springbootmybatis.pojo
+
