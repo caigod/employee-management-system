@@ -35,6 +35,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         this.employeeDao.delete(id);
     }
 
+    //通过id查询
     @Override
     public Employee findById(Integer id) {
         return this.employeeDao.selectEmpById(id);
@@ -43,6 +44,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void updateEmp(Employee employee) {
         this.employeeDao.update(employee);
+    }
+
+    //通过用户名查询
+    @Override
+    public Employee findByName(String lastname) {
+        return this.employeeDao.selectEmpByName(lastname);
     }
     /*//通过id查询员工
     public Employee getEmployeeById(Integer id){

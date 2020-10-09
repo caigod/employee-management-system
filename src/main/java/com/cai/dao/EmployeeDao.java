@@ -50,6 +50,32 @@ public class EmployeeDao {
         });
     }
 
+
+
+    //通过用户名查询
+    public Employee selectEmpByName(String lastname){
+        Employee employee = new Employee();
+        try{
+            String sql = "select * from employee where lastname = ?";
+            Object [] arr = new Object[]{lastname};
+            this.jdbcTemplate.query(sql, arr,new RowCallbackHandler() {
+                @Override
+                public void processRow(ResultSet resultSet) throws SQLException {
+                    employee.setId(resultSet.getInt("id"));
+                    employee.setLastname(resultSet.getString("lastname"));
+                    employee.setEmail(resultSet.getString("email"));
+                    employee.setGender(resultSet.getInt("gender"));
+                    employee.setDepartment(resultSet.getString("department"));
+                    employee.setPhone(resultSet.getString("phone"));
+                }
+            });
+        }catch (Exception e){
+           // e.printStackTrace();
+        }
+
+        return employee;
+    }
+
     //预修改查询
     public Employee selectEmpById(Integer id){
         Employee employee = new Employee();

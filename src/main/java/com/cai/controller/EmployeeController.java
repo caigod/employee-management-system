@@ -5,14 +5,13 @@ import com.cai.dao.EmployeeDao;
 import com.cai.pojo.Department;
 import com.cai.pojo.Employee;
 import com.cai.service.EmployeeService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Collection;
 import java.util.List;
 
@@ -82,6 +81,21 @@ public class EmployeeController {
         }
 
         return "redirect:emps";
+    }
+
+    //通过用户名查询员工
+    @GetMapping("/selectByName")
+    public String login(String lastname,Model model) {
+        //具体的业务；
+        try{
+            Employee employee = this.employeeService.findByName(lastname);
+            model.addAttribute("selectemp",employee);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+            return "/emp/selectlist";
+
     }
 
   /*  //去员工页面

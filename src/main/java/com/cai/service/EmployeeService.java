@@ -10,4 +10,5 @@ public interface EmployeeService {
     void delEmp(Integer id);
     Employee findById(Integer id);
     void updateEmp(Employee employee);
+    Employee findByName(String lastname);
 }
